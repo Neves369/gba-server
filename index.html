@@ -3,6 +3,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Digimon Battle Spirits 2</title>
 		<link rel="stylesheet" href="resources/main.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=landscape">
 	</head>
 	<body id="body">
 		<canvas id="screen"></canvas>
@@ -10,16 +11,25 @@
 
 			<section id="topButtoms">
 				<button id="L" class="topButtom">L</button>
-				<div>
+				<div id="subTopButtoms">
+					
 					<button id="SELECT" class="topButtom">SELECT</button>
 					<button id="START" class="topButtom">START</button>
+					<br/>
+					<label id="pixelated">
+						<input
+							type="checkbox"
+							onchange="setPixelated(this.checked)"
+						/>
+						<p>Pixelated</p>
+					</label>
 				</div>
 				<button id="R" class="topButtom">R</button>
 			</section>
 
 			<div id="space"></div>
 
-			<section  id="gamepad">
+			<section  class="gamepad">
 				<div id="gamepad-left">
 					<div style="flex: 1">
 						<button id="UP" class="upButtom"></button>
@@ -50,7 +60,7 @@
 
 		
 		
-		<section id="controls">
+		<!-- <section id="controls"> -->
 			<!-- <div id="preload">
 				<button
 					class="bigbutton"
@@ -84,16 +94,8 @@
 				</button>
 				
 				<button onclick="fullScreen()">Full screen</button> -->
-				<label id="pixelated">
-					<input
-						type="checkbox"
-						onchange="setPixelated(this.checked)"
-					/>
-					<p>Pixelated</p>
-				</label>
-				
-			</div>
-		</section>
+			<!-- </div> -->
+		<!-- </section> -->
 		
 		
 	</body>

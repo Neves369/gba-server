@@ -43,10 +43,9 @@ class GameBoyAdvanceKeypad {
 	}
 
 	virtualpadHandler(e) {
-		// if (canVibrate) navigator.vibrate(50);
 		var code = e.target.id;
 		var toggle = 0;
-		// console.log(e)
+		console.log(e)
 
 		switch (code) {
 			case 'START':
@@ -84,7 +83,8 @@ class GameBoyAdvanceKeypad {
 		}
 		console.log(e.type)
 		toggle = 1 << toggle;
-		if (e.type == "pointerdown") {
+		if (e.type == "touchstart" || e.type == "pointerdown") {
+		// if (e.type == "pointerdown") {
 			this.currentDown &= ~toggle;
 		} else {
 			this.currentDown |= toggle;
@@ -215,7 +215,39 @@ class GameBoyAdvanceKeypad {
 	}
 	registerHandlers() {
 
+		// Mapeamento L e R 
+		let childNodes1 = document.getElementById('topButtoms').childNodes;
+		for (var i = 0; i < childNodes1.length; i++) {
+			var childNode = childNodes1[i];
+			if (childNode.nodeName === "BUTTON") {
+				childNode.addEventListener(
+					'pointerdown',
+					this.virtualpadHandler.bind(this)
+				);
+				childNode.addEventListener(
+					'pointerup',
+					this.virtualpadHandler.bind(this)
+				);
+			}
+		}
 
+		// Mapeamento START e SELECT 
+		let childNodes2 = document.getElementById('subTopButtoms').childNodes;
+		for (var j = 0; j < childNodes2.length; j++) {
+			var childNode = childNodes2[j];
+			if (childNode.nodeName === "BUTTON") {
+				childNode.addEventListener(
+					'pointerdown',
+					this.virtualpadHandler.bind(this)
+				);
+				childNode.addEventListener(
+					'pointerup',
+					this.virtualpadHandler.bind(this)
+				);
+			}
+		}
+
+		// Mapeamento A
 		document.getElementById('A').addEventListener(
 			'pointerdown',
 			this.virtualpadHandler.bind(this)
@@ -226,7 +258,9 @@ class GameBoyAdvanceKeypad {
 			'pointerup',
 			this.virtualpadHandler.bind(this)
 		);
+		// -------------------------------------------
 
+		// Mapeamento B
 		document.getElementById('B').addEventListener(
 			'pointerdown',
 			this.virtualpadHandler.bind(this)
@@ -237,94 +271,75 @@ class GameBoyAdvanceKeypad {
 			'pointerup',
 			this.virtualpadHandler.bind(this)
 		);
+		// ---------------------------------------------
 
-		document.getElementById('L').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
+
+		let childNodes3 = document.getElementById('gamepad-left').childNodes;
+		console.log(childNodes3)
+
+		for (var k = 0; k < childNodes3.length; k++) {
+			var childNode = childNodes3[k];
+			if(childNode.nodeName === "DIV"){
+				let subChildNodes = childNode.childNodes;
+				for (var l = 0; l < subChildNodes.length; l++) {
+					var subChildNode = subChildNodes[l];
+					if(subChildNode.nodeName === "BUTTON"){
+						childNode.addEventListener(
+							'pointerdown',
+							this.virtualpadHandler.bind(this)
+						);
+						childNode.addEventListener(
+							'pointerup',
+							this.virtualpadHandler.bind(this)
+						);
+					}
+				}
+			}
+		}
+
+		// document.getElementById('UP').addEventListener(
+		// 	'pointerdown',
+		// 	this.virtualpadHandler.bind(this)
 			
-		);
+		// );
 
-		document.getElementById('L').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
+		// document.getElementById('UP').addEventListener(
+		// 	'pointerup',
+		// 	this.virtualpadHandler.bind(this)
+		// );
 
-		document.getElementById('R').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
+		// document.getElementById('DOWN').addEventListener(
+		// 	'pointerdown',
+		// 	this.virtualpadHandler.bind(this)
 			
-		);
+		// );
 
-		document.getElementById('R').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
+		// document.getElementById('DOWN').addEventListener(
+		// 	'pointerup',
+		// 	this.virtualpadHandler.bind(this)
+		// );
 
-		document.getElementById('START').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
+		// document.getElementById('LEFT').addEventListener(
+		// 	'pointerdown',
+		// 	this.virtualpadHandler.bind(this)
 			
-		);
+		// );
 
-		document.getElementById('START').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
+		// document.getElementById('LEFT').addEventListener(
+		// 	'pointerup',
+		// 	this.virtualpadHandler.bind(this)
+		// );
 
-		document.getElementById('SELECT').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
+		// document.getElementById('RIGHT').addEventListener(
+		// 	'pointerdown',
+		// 	this.virtualpadHandler.bind(this)
 			
-		);
+		// );
 
-		document.getElementById('SELECT').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
-
-		document.getElementById('UP').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
-			
-		);
-
-		document.getElementById('UP').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
-
-		document.getElementById('DOWN').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
-			
-		);
-
-		document.getElementById('DOWN').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
-
-		document.getElementById('LEFT').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
-			
-		);
-
-		document.getElementById('LEFT').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
-
-		document.getElementById('RIGHT').addEventListener(
-			'pointerdown',
-			this.virtualpadHandler.bind(this)
-			
-		);
-
-		document.getElementById('RIGHT').addEventListener(
-			'pointerup',
-			this.virtualpadHandler.bind(this)
-		);
+		// document.getElementById('RIGHT').addEventListener(
+		// 	'pointerup',
+		// 	this.virtualpadHandler.bind(this)
+		// );
 
 		
 

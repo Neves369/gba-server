@@ -7,6 +7,7 @@ body {
 	overflow: hidden;
 	font-size: 15px;
 	height: 100%;
+	touch-action: manipulation;
 }
 
 button {
@@ -50,6 +51,7 @@ button {
   border-radius: 10px;
   padding: 0px;
   width: 150px;
+  max-height: 50px;
 }
 
 .upButtom {
@@ -82,12 +84,15 @@ button {
 
 #space {
 	flex: 4;
+	
 	/* background-color: red; */
 }
 
-#gamepad {
-	flex: 3;
+.gamepad {
+	bottom: 0;
 	display: flex;
+	width: 100%;
+	position: absolute;
 	/* background-color: aqua; */
 }
 
