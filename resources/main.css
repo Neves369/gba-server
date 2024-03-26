@@ -10,6 +10,10 @@ body {
 	touch-action: manipulation;
 }
 
+li{
+	cursor: pointer;
+}
+
 button {
 	font-family: 'Calibri', 'Verdana', sans-serif;
 	background-color: rgba(129, 129, 129, 0.5);
@@ -22,6 +26,23 @@ button {
     user-select: none; /* Standard */
 
 }
+
+#navigateModal {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background-color: #ffffff;
+	border: 5px solid #2d231d;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	font-family: 'Courier New', monospace;
+	text-align: center;
+	border-radius: 15px;
+	color: black;
+  }
 
 #screen {
 	image-rendering: -moz-crisp-edges;

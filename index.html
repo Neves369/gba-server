@@ -96,6 +96,17 @@
 				<button onclick="fullScreen()">Full screen</button> -->
 			<!-- </div> -->
 		<!-- </section> -->
+
+		<div id="navigateModal" class="modal">
+			<div class="modal-title">
+			  <p class="retro-text">Escolha o Jogo:</p>
+			</div>
+			<div class="modal-content">
+			  <ul>
+				<li onclick="run('rooms/digimon.gba')">Digimon Battle Spirits</li>
+				<li onclick="run('rooms/digimon2.gba')">Digimon Battle Spirits 2</li>
+			  </ul>
+			</div>
 		
 		
 	</body>
@@ -166,7 +177,8 @@
 						let pixelatedBox = document.getElementById('pixelated');
 						pixelatedBox.parentElement.removeChild(pixelatedBox);
 					}
-					run("")
+					// run("")
+					openModal();
 				} else {
 					let dead = document.getElementById('controls');
 					dead.parentElement.removeChild(dead);
@@ -208,7 +220,7 @@
 			function run(file) {
 				// console.log("file: ", file)
 				
-				fetch('game.gba')
+				fetch(file)
 				.then(response => response.blob()) // Converte a resposta para um objeto Blob
 				.then(blob => {
 					// Cria um novo objeto File a partir do objeto Blob
@@ -224,6 +236,7 @@
 						fadeOut('preload', 'ingame');
 						fadeOut('instructions', null, true);
 						gba.runStable();
+						closeModal()
 					} else {
 						load.textContent = 'FAILED';
 						setTimeout(function () {
@@ -365,6 +378,19 @@
 
 			const fullScreen = () => {
 				document.getElementById('screen').requestFullscreen();
+			};
+
+			function openModal() {
+				document.getElementById('navigateModal').style.display = 'block';
+				document.body.classList.add('modal-open');
+				document.querySelector('.modal-overlay').style.display = 'block';
+			};
+
+			function closeModal() {
+				document.getElementById('navigateModal').style.display = 'none';
+				document.body.classList.remove('modal-open');
+				document.querySelector('.modal-overlay').style.display = 'none';
+				
 			};
 			
 			
